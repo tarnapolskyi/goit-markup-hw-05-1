@@ -20,7 +20,7 @@
   <header class="head">
     <div class="container header-container">
       <nav class="main-nav">
-        <a class="logo" lang="en" href="./index.html"><span class="accent">Web</span>Studio</a>
+        <a class="logo link" lang="en" href="./index.html"><span class="accent">Web</span>Studio</a>
         <ul class="main-menu list">
           <li class="main-menu-item">
             <a class="link current" href="./index.html">Студия</a>
@@ -56,7 +56,7 @@
     <section class="hero-section">
       <div class="container">
         <h1 class="hero-title">Эффективные решения для вашего бизнеса</h1>
-        <button class="hero-button" type="button">Заказать услугу</button>
+        <button class="hero-button" type="button" data-modal-open>Заказать услугу</button>
       </div>
     </section>
     <section>
@@ -112,15 +112,18 @@
       <div class="container about">
         <h2 class="section-title">Чем мы занимаемся</h2>
         <ul class="section-list list">
-          <li>
-            <img src="./images/what_are_we_doing/box_1.jpg" alt="разработка с нуля" width="370" height="294" />
+          <li class="section-list-img">
+              <img src="./images/what_are_we_doing/box_1.jpg" alt="разработка с нуля" width="370" height="294" />
+              <h3 class="section-list-overlay">Десктопные приложения</h3>
           </li>
-          <li>
+          <li class="section-list-img">
             <img src="./images/what_are_we_doing/box_2.jpg" alt="разработка под мобильные приложения" width="370"
               height="294" />
+              <h3 class="section-list-overlay">Мобильные приложения</h3>
           </li>
-          <li>
+          <li class="section-list-img">
             <img src="./images/what_are_we_doing/box_3.jpg" alt="дизайн" width="370" height="294" />
+            <h3 class="section-list-overlay">Дизайнерские решения</h3>
           </li>
         </ul>
       </div>
@@ -335,18 +338,18 @@
     <section class="container footer-section-style">
       <div class="footer-section">
         <h2 hidden>Контакты</h2>
-        <a class="logo footer-logo" lang="en" href="./index.html"><span class="accent">Web</span>Studio</a>
+        <a class="logo footer-logo link" lang="en" href="./index.html"><span class="accent">Web</span>Studio</a>
         <address>
           <ul class="address list">
             <li class="address-list">
-              <a class="address-link" href="https://goo.gl/maps/wh96AMnJQYNLFuH58" target="_blank"
+              <a class="address-link link" href="https://goo.gl/maps/wh96AMnJQYNLFuH58" target="_blank"
                 rel="noopener noreferer">г. Киев, пр-т Леси Украинки, 26</a>
             </li>
             <li class="address-list">
-              <a class="address-link" href="mailto:info@example.com">info@example.com</a>
+              <a class="address-link link" href="mailto:info@example.com">info@example.com</a>
             </li>
             <li class="address-list">
-              <a class="address-link" href="tel:+380991111111">+38 099 111 11 11</a>
+              <a class="address-link link" href="tel:+380991111111">+38 099 111 11 11</a>
             </li>
           </ul>
         </address>
@@ -386,6 +389,17 @@
       </div>
     </section>
   </footer>
+  <div class="backdrop is-hidden"  data-modal>
+    <div class="modal">
+      <button type="button" class="close-button"  data-modal-close>
+        <svg class="close-btn-icon" width="11" height="11">
+          <use href="./images/sprite.svg#icon-close_btn"></use>
+        </svg>
+
+      </button>
+    </div>
+  </div>
+  <script src="./js/modal.js"></script>
 </body>
 
 </html>

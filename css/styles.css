@@ -7,6 +7,7 @@
   --secondary-text-color: #ffffff;
   --subtitle-color: #212121;
   --bcg-color: #2f303a;
+  --timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 body {
   color: var(--text-color);
@@ -36,6 +37,9 @@ img {
   padding: 0;
   margin: 0;
   list-style: none;
+}
+.link {
+  text-decoration: none;
 }
 .container {
   width: 1200px;
@@ -70,7 +74,6 @@ img {
   line-height: 1.19;
   letter-spacing: 0.03em;
   color: #000000;
-  text-decoration: none;
 }
 .accent {
   color: var(--accent-color);
@@ -87,18 +90,28 @@ img {
   padding-top: 32px;
   padding-bottom: 32px;
 
+  position: relative;
+
   font-weight: 500;
   line-height: 1.14;
   letter-spacing: 0.02em;
   color: var(--subtitle-color);
-  text-decoration: none;
 }
-.main-menu .link:hover,
-.main-menu .link:focus {
-  color: var(--accent-color);
-}
+
+/* opacity: 0; */
+
 .main-menu .link.current {
   color: var(--accent-color);
+}
+.main-menu .link.current::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  display: block;
+  width: 100%;
+  height: 4px;
+  border-radius: 2px;
+  background-color: var(--accent-color);
 }
 .header-contacts {
   display: flex;
@@ -114,7 +127,7 @@ img {
   line-height: 16px;
   letter-spacing: 0.02em;
   color: var(--text-color);
-  text-decoration: none;
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 .header-contacts .link:hover,
 .header-contacts .link:focus {
@@ -172,25 +185,6 @@ img {
   cursor: pointer;
   border: none;
 }
-/* ================ Section ================== */
-.about {
-  padding-top: 0;
-  padding-bottom: 94px;
-}
-.section-title {
-  margin-bottom: 50px;
-  font-weight: var(--subtitle-weight);
-  font-size: 36px;
-  line-height: 1.16;
-  text-align: center;
-  letter-spacing: 0.03em;
-  color: var(--subtitle-color);
-}
-.section-list {
-  display: flex;
-  justify-content: space-between;
-}
-
 /* ================ Benefits ================== */
 .benefits {
   display: flex;
@@ -224,6 +218,43 @@ img {
   text-transform: uppercase;
   color: var(--subtitle-color);
 }
+/* ================ What-are-we-doing ================== */
+.about {
+  padding-top: 0;
+  padding-bottom: 94px;
+}
+.section-title {
+  margin-bottom: 50px;
+  font-weight: var(--subtitle-weight);
+  font-size: 36px;
+  line-height: 1.16;
+  text-align: center;
+  letter-spacing: 0.03em;
+  color: var(--subtitle-color);
+}
+.section-list {
+  display: flex;
+  justify-content: space-between;
+}
+.section-list-img {
+  position: relative;
+}
+.section-list-overlay {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 70px;
+  padding-top: 27px;
+  padding-bottom: 27px;
+  font-size: 14px;
+  line-height: 1.14;
+  text-align: center;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: #ffffff;
+  background-color: rgba(47, 48, 58, 0.8);
+}
+
 /* ================ Our team section ================== */
 .our-team-section {
   margin-top: 0;
@@ -277,6 +308,8 @@ img {
   border-radius: 50%;
   fill: #afb1b8;
   background-color: #ffffff;
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    fill 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .social-list-item-link:hover,
@@ -300,10 +333,10 @@ img {
   box-sizing: border-box;
   border-radius: 4px;
   fill: #afb1b8;
+  transition: fill 250ms cubic-bezier(0.4, 0, 0.2, 1), border 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 .regular-customers-item-link:hover,
 .regular-customers-item-link:focus {
-  background-color: var(--secondary-text-color);
   fill: #2196f3;
   border: 1px solid #2196f3;
 }
@@ -327,8 +360,8 @@ img {
   font-style: normal;
   line-height: 24px;
   letter-spacing: 0.03em;
-  text-decoration: none;
   color: var(--secondary-text-color);
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 .address .link:hover,
 .address .link:focus {
@@ -353,8 +386,55 @@ img {
   margin-bottom: 20px;
 }
 .footer-item-link {
-  background: rgba(255, 255, 255, 0.1);
+  background-color: rgba(255, 255, 255, 0.1);
   fill: var(--secondary-text-color);
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    fill 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+/* ========Backdrop=========*/
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.2);
+  transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    visibility 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+.modal {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 528px;
+  height: 580px;
+  transform: translate(-50%, -50%);
+  background-color: #ffffff;
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12), 0px 1px 1px rgba(0, 0, 0, 0.14),
+    0px 2px 1px rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+}
+.close-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  border-radius: 50%;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  background-color: transparent;
+  cursor: pointer;
+  padding: 0;
+  padding: 6px;
+  box-sizing: border-box;
+}
+.is-hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
 }
 /* ================ Portfolio page ================== */
 .portfolio-nav {
@@ -376,6 +456,9 @@ img {
   background-color: #f5f4fa;
   border-radius: 4px;
   border: none;
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    background-color 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 .nav-list-button:hover,
 .nav-list-button:focus {
@@ -418,6 +501,7 @@ img {
   width: 370px;
   margin-top: 15px;
   margin-left: 15px;
+  transition: box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 .item-list-element:nth-child(3n) {
   margin-right: 0;
@@ -435,4 +519,31 @@ img {
   box-sizing: border-box;
   box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.12), 0px 4px 4px rgba(0, 0, 0, 0.06),
     1px 4px 6px rgba(0, 0, 0, 0.16);
+}
+.item-list-link {
+  display: block;
+}
+.item-list-img {
+  position: relative;
+  overflow: hidden;
+}
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(33, 150, 243, 0.9);
+  color: #ffffff;
+  overflow: auto;
+  padding: 63px 24px;
+  font-size: 18px;
+  line-height: 1.56;
+  letter-spacing: 0.03em;
+  transform: translateY(100%);
+  transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+.item-list-link:hover .overlay,
+.item-list-link:focus .overlay {
+  transform: translateY(0%);
 }
